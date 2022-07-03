@@ -6,7 +6,9 @@ const SECRET_KEY = process.env.REACT_SECRET_WEATHER_API_KEY || 'b7a1f25e1ebee3f1
 const getAllWeather = async (lat: Number, lon: number) => {
   const url = `${WEATHER_API}?lat=${lat}&lon=${lon}&appid=${SECRET_KEY}`
 
-  return axios.get(url);
+  const response = await axios.get(url);
+
+  return response.data;
 }
 
 const weatherServices = {

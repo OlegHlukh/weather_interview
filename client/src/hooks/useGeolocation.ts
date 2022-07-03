@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useMemo, useState} from 'react';
 
 const useGeolocation = () => {
   const [latitude, setLatitude] = useState(0);
@@ -15,24 +15,27 @@ const useGeolocation = () => {
       setLatitude(location.coords.latitude);
       setLongitude(location.coords.longitude);
       setIsLoading(false);
-    }
+    };
 
     const onError = (error: GeolocationPositionError) => {
       setError(error.message);
       setIsLoading(false);
-    }
+    };
 
-    navigator.geolocation.getCurrentPosition(onSuccess, onError)
-  }, [])
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+  }, []);
 
-  return {
-    coordinate: {
-      latitude,
-      longitude
-    },
-    error,
-    isLoading,
-  }
-}
+  return useMemo(
+    () => ({
+      coordinate: {
+        latitude,
+        longitude,
+      },
+      error,
+      isLoading,
+    }),
+    [error, isLoading, latitude, longitude],
+  );
+};
 
 export default useGeolocation;

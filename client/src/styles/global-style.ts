@@ -4,7 +4,7 @@ import reset from 'styled-reset';
 const GlobalStyle = createGlobalStyle`
   ${reset}
 
-  * *::before *::after{
+  * *::before *::after {
     box-sizing: border-box;
   }
 

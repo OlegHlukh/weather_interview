@@ -1,32 +1,25 @@
 import {FC, useEffect, useState} from 'react';
+import useAppDispatch from './hooks/redux/useAppDispath';
+import useAppSelector from './hooks/redux/useAppSelector';
 import useGeolocation from './hooks/useGeolocation';
-import weatherServices from './services/weatherServices';
+import fetchWeather from './store/reducers/weather/actionCreator';
 
 const App: FC = () => {
-  const [data, setData] = useState(null);
+  const dispatch = useAppDispatch();
+  const {weather, error: weatherError, isLoading: weatherIsLoading} = useAppSelector(state => state.weatherReducer)
 
   const {error, coordinate, isLoading} = useGeolocation();
 
   useEffect(() => {
-    const getWeather = async () => {
-      try {
-        const response = await weatherServices.getAllWeather(
-          coordinate.latitude,
-          coordinate.longitude,
-        );
-
-        setData(response.data);
-      } catch (e) {
-        console.log(e);
-      }
-    }
     if (isLoading) return;
-    getWeather();
-  }, [coordinate, isLoading]);
+
+    dispatch(fetchWeather(coordinate))
+  
+  }, [isLoading, dispatch, coordinate]);
 
   return (
     <div>
-      {error && <div>{error}</div>}
+      {weatherError && <div>{weatherError}</div>}
       {isLoading ? (
         <div>loading</div>
       ) : (
