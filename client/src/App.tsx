@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {FC, useEffect, useState} from 'react';
+import useGeolocation from './hooks/useGeolocation';
+import weatherServices from './services/weatherServices';
 
-function App() {
+const App: FC = () => {
+  const [data, setData] = useState(null);
+
+  const {error, coordinate, isLoading} = useGeolocation();
+
+  useEffect(() => {
+    const getWeather = async () => {
+      try {
+        const response = await weatherServices.getAllWeather(
+          coordinate.latitude,
+          coordinate.longitude,
+        );
+
+        setData(response.data);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    if (isLoading) return;
+    getWeather();
+  }, [coordinate, isLoading]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {error && <div>{error}</div>}
+      {isLoading ? (
+        <div>loading</div>
+      ) : (
+        <div>
+          <p>{coordinate.latitude}</p>
+          <p>{coordinate.longitude}</p>
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default App;
