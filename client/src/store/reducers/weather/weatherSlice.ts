@@ -1,14 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { WeatherList } from '../../../models/Weather';
 import fetchWeather from './actionCreator';
 
 interface WeatherState {
-  weather: Record<string, unknown>[];
+  weather: WeatherList;
   isLoading: boolean;
   error: null | string;
 }
 
 const initialState: WeatherState = {
-  weather: [],
+  weather: {
+    city: {},
+    list: []
+  },
   isLoading: false,
   error: null,
 }
@@ -18,7 +22,7 @@ const weatherSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [fetchWeather.fulfilled.type]: (state, action: PayloadAction<Record<string, unknown>[]>) => {
+    [fetchWeather.fulfilled.type]: (state, action: PayloadAction<WeatherList>) => {
       state.isLoading = false;
       state.error = null;
       state.weather = action.payload;

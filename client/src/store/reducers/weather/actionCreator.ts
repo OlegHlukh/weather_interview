@@ -6,7 +6,7 @@ const fetchWeather = createAsyncThunk(
   'weather/fetchWeather',
   async (coord: {latitude: number; longitude: number}, {rejectWithValue}) => {
     try {
-      const weather = await weatherServices.getAllWeather(
+      const weather = await weatherServices.getWeatherByDay(
         coord.latitude,
         coord.longitude,
       );

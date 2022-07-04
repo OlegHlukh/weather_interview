@@ -1,15 +1,20 @@
 import {createGlobalStyle} from 'styled-components';
 import reset from 'styled-reset';
 
+import fontFaces from './fontFaces';
+
 const GlobalStyle = createGlobalStyle`
   ${reset}
+  ${fontFaces}
 
   * *::before *::after {
     box-sizing: border-box;
   }
 
   body {
-    font-size: 10px;
+    font-size: 23px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
   }
 `;
 

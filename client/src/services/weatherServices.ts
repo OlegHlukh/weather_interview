@@ -1,18 +1,24 @@
 import axios from 'axios';
+import {WeatherList} from '../models/Weather';
 
-const WEATHER_API = process.env.REACT_WEATHER_API || 'https://api.openweathermap.org/data/2.5/forecast/hourly';
-const SECRET_KEY = process.env.REACT_SECRET_WEATHER_API_KEY || 'b7a1f25e1ebee3f154d0a3e002defecb';
+const WEATHER_API =
+  process.env.REACT_WEATHER_API ||
+  'https://api.openweathermap.org/data/2.5/forecast';
 
-const getAllWeather = async (lat: Number, lon: number) => {
-  const url = `${WEATHER_API}?lat=${lat}&lon=${lon}&appid=${SECRET_KEY}`
+  const SECRET_KEY =
+  process.env.REACT_SECRET_WEATHER_API_KEY ||
+  '9f33a9b3667f0f3e5e08ceebcd322a4f';
 
-  const response = await axios.get(url);
+const getWeatherByDay = async (lat: Number, lon: number) => {
+  const url = `${WEATHER_API}?lat=${lat}&lon=${lon}&appid=${SECRET_KEY}&cnt=4&units=metric`;
+
+  const response = await axios.get<WeatherList>(url);
 
   return response.data;
-}
+};
 
 const weatherServices = {
-  getAllWeather,
-}
+  getWeatherByDay,
+};
 
 export default weatherServices;
