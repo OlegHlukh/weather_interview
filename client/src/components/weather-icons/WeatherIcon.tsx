@@ -11,7 +11,7 @@ const WeatherIcon: FC<WeatherIconProps> = ({icon, partOfDay}) => {
   return (
     <S.Root>
       <S.Icon>{icon}</S.Icon>
-      <p> {partOfDay}</p>
+      <p>{partOfDay}</p>
     </S.Root>
   );
 };

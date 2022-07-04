@@ -4,6 +4,8 @@ const Root = styled.div`
   display: grid;
   gap: 2rem;
 
+  padding-inline-end: 1rem;
+
   & h3 {
     font-size: 1.6rem;
     font-weight: 600;

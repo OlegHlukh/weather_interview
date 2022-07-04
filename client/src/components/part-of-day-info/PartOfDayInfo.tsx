@@ -24,10 +24,6 @@ const PartOfDay: FC<PartOfDayProps> = ({
   pressure
 }) => {
 
-
-  console.log('wind' ,wind);
-  
-
   return <S.Root>
     <h3>today details</h3>
     <S.Grid>

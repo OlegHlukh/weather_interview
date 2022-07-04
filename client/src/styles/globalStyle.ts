@@ -7,7 +7,7 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
   ${fontFaces}
 
-  * *::before *::after {
+  * {
     box-sizing: border-box;
   }
 

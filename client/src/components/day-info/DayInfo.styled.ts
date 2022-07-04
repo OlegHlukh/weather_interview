@@ -7,9 +7,4 @@ const Root = styled.div`
   
 `;
 
-const Grid = styled.div`
-  display: grid;
-  gap: 1rem;
-`;
-
-export {Root, Grid};
+export {Root};

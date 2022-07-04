@@ -20,8 +20,8 @@ const MoonCloud: FC = () => {
           y2='24'
           gradientUnits='userSpaceOnUse'
         >
-          <stop stop-color='#FFD800' />
-          <stop offset='1' stop-color='#FF6B00' stop-opacity='0.64' />
+          <stop stopColor='#FFD800' />
+          <stop offset='1'stopColor='#FF6B00' stopOpacity='0.64' />
         </linearGradient>
       </defs>
     </svg>

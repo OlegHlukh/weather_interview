@@ -1,13 +1,11 @@
-import {FC, useEffect, useMemo, useState} from 'react';
+import {FC, useCallback, useEffect, useMemo, useState} from 'react';
 
 import useAppDispatch from '../../hooks/redux/useAppDispatch';
 import useAppSelector from '../../hooks/redux/useAppSelector';
 import useGeolocation from '../../hooks/useGeolocation';
 import fetchWeather from '../../store/reducers/weather/actionCreator';
-import getPartOfDay from '../../utils/getPartOfDay/getPartOfDay';
 import PartOfDay from '../part-of-day-info/PartOfDayInfo';
-import WeatherCard from '../weather-card/WeatherCard';
-import { WeatherType } from '../weather-card/weatherType';
+import WeatherList from '../weather-list/WeatherList';
 
 import * as S from './DayInfo.styled';
 
@@ -41,9 +39,9 @@ const DayInfo: FC = () => {
     return weather.list.find((el) => el.dt === partOfDayDt);
   }, [partOfDayDt, weatherIsLoading, weather.list]);
 
-
-  console.log(weather);
-  
+  const handleClick = useCallback((value: number) => {
+    setPartOfDayDt(value);
+  }, [])
 
   if (weatherIsLoading) {
     return <h1>Loading</h1>;
@@ -51,25 +49,12 @@ const DayInfo: FC = () => {
   
   return (
     <S.Root>
-      <S.Grid>
-        {weather.list.map((hourlyInfo) => {
-          const hours =  new Date(hourlyInfo.dt_txt).getHours();
-          const part = hours > 20 ? 'night' : 'day';
-
-          const partOfDay = getPartOfDay(hours);
-          
-          return (
-            <div onClick={() => setPartOfDayDt(hourlyInfo.dt)}>
-              <WeatherCard
-                temperature={hourlyInfo.main.temp}
-                weatherType={(`${hourlyInfo.weather[0].description} ${part}`) as WeatherType}
-                description={hourlyInfo.weather[0].description}
-                partOfDay={partOfDay}
-              />
-            </div>
-          );
-        })}
-      </S.Grid>
+      {weather.list && 
+        <WeatherList 
+          weatherList={weather.list}
+          handleClick={handleClick}
+        />
+      }
       {partOfDayInfo && (
         <PartOfDay
           pressure={partOfDayInfo.main.pressure}
