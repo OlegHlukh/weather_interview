@@ -14,9 +14,9 @@ const store = setupStore();
 
 root.render(
   <React.StrictMode>
-    <GlobalStyle />
     <Provider store={store}>
       <ThemeProvider theme={{}}>
+        <GlobalStyle />
         <App />
       </ThemeProvider>
     </Provider>
