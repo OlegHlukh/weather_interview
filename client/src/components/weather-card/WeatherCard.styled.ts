@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Root = styled.div`
   display: grid;
-  grid-template-columns: clamp(150px, 8vw, 250px) auto;
+  grid-template-columns: clamp(120px, 8vw, 250px) auto;
 
   gap: 1rem;
 `;
@@ -20,7 +20,7 @@ type BGColor = {
 
 const WeatherDetails = styled.div<BGColor>`
   display: flex;
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2.7vw, 1.2rem);
   background-color: ${props => bgColors[props.part]};
   flex-direction: column;
 

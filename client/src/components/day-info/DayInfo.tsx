@@ -43,6 +43,9 @@ const DayInfo: FC = () => {
     setPartOfDayDt(value);
   }, [])
 
+  console.log('waterh', weather);
+  
+
   if (weatherIsLoading) {
     return <h1>Loading</h1>;
   }

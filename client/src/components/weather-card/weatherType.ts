@@ -2,7 +2,7 @@ import Sun from '../UI/icons/Sun';
 import Cloud from '../UI/icons/Cloud';
 import Rain from '../UI/icons/Rain';
 import Storm from '../UI/icons/Storm';
-import SunCloud from '../UI/icons/SunCloud';
+import SunCloud from '../UI/icons/sun-cloud/SunCloud';
 import Moon from '../UI/icons/Moon';
 import MoonCloud from '../UI/icons/MooCloud';
 import MoonRain from '../UI/icons/MoonRain';

@@ -9,7 +9,7 @@ const Root = styled.div`
   gap: 0.6rem;
 
   & p {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2.7vw, 1.2rem);
     text-align: center;
     text-transform: capitalize;
     font-weight: 400;

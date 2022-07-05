@@ -12,13 +12,13 @@ const Content = styled.div`
   gap: 0.5rem;
   justify-content: center;
 
-  & > h3 {
-    font-size: 1.4rem;
+  & h3 {
+    font-size: clamp(1.1rem, 2.8vw, 1.4rem);
     font-weight: 600;
   }
 
-  & > p {
-    font-size: 1.2rem;
+  & p {
+    font-size: clamp(1rem, 2.7vw, 1.2rem);
     text-transform: capitalize;
   }
 `;

@@ -10,11 +10,11 @@ const getPartOfDay = (date: Date | number): PartOfDay => {
     hours = date.getHours();
   }
 
-  if (hours <= 12 && hours >= 3) {
+  if (hours < 12 && hours >= 3) {
     return 'morning'
   }
 
-  if (hours > 12 && hours < 18) {
+  if (hours >= 12 && hours < 18) {
     return 'afternoon'
   }
 
