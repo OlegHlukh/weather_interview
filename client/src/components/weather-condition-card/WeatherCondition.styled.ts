@@ -13,7 +13,7 @@ const Content = styled.div`
   justify-content: center;
 
   & h3 {
-    font-size: clamp(1.1rem, 2.8vw, 1.4rem);
+    font-size: clamp(1.1rem, 2.8vw, 1.3rem);
     font-weight: 600;
   }
 
